@@ -12,7 +12,7 @@ import reportWebVitals from './reportWebVitals';
 // );
 ReactDOM.render(
   <React.StrictMode>
-    <div class="mainbox">
+    <div className="mainbox">
     <App/>
     </div>
   </React.StrictMode>,

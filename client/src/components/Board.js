@@ -43,9 +43,14 @@ function Board({ result, setResult, PlayerNumber}) {
               foundWinningPattern = false;
             }
           });
-    
+          let winnerPlayer = null;
+          if (board[currPattern[0]] === "X"){
+            winnerPlayer = "You"
+          }else {
+            winnerPlayer = "Opponent"
+          }
           if (foundWinningPattern) {
-            setResult({ winner: board[currPattern[0]], state: "won" });
+            setResult({ winner: winnerPlayer, state: "won" });
           }
         });
       };

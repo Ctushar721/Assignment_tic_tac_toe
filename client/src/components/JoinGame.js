@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useChatContext, Channel } from "stream-chat-react";
 import Game from "./Game";
+import AllPreviousGames from "./AllPreviousGames";
 // import CustomInput from "./CustomInput";
 function JoinGame() {
   const [rivalUsername, setRivalUsername] = useState("");
@@ -49,6 +50,8 @@ function JoinGame() {
             }}
           />
           <button onClick={createChannel}> Join/Start Game</button>
+          <AllPreviousGames client={client} channel={channel} setChannel={setChannel} PlayerNumber={PlayerNumber}/>
+          {/* set channel as a prop */}
         </div>
       )}
     </>
