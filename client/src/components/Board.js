@@ -2,11 +2,13 @@ import React, {useState, useEffect} from "react";
 import Square from "./Square";
 import { useChannelStateContext, Channel, useChatContext} from "stream-chat-react";
 import { Patterns } from "../WinningPatterns";
-function Board({ result, setResult }) {
+function Board({ result, setResult, PlayerNumber}) {
     const [board,setBoard] = useState(["","","","","","","","",""])
-    const [player,setPlayer] = useState("X");
-    const [turn,setTurn] = useState("X");
+    const [player,setPlayer] = useState("P1");
+    // console.log("player",player);
+    const [turn,setTurn] = useState("P1");
     const {channel} = useChannelStateContext();
+    console.log(channel);
     const {client} = useChatContext();
     useEffect(() => {
         checkIfTie();
@@ -15,7 +17,7 @@ function Board({ result, setResult }) {
 
     const chooseSquare = async (square) => {
         if (turn === player && board[square] === "") {
-            setTurn(player === "X" ? "O" : "X");
+            setTurn(player === "P1" ? "P2" : "P1");
             await channel.sendEvent({
               type: "game-move",
               data: { square, player },
@@ -23,13 +25,14 @@ function Board({ result, setResult }) {
             setBoard(
               board.map((val, idx) => {
                 if (idx === square && val === "") {
-                  return player;
+                  return "X"
+                  // return (player === "P1" ? "X" : "O");
                 }
                 return val;
               })
             );
           }
-    };
+    }; 
     const checkWin = () => {
         Patterns.forEach((currPattern) => {
           const firstPlayer = board[currPattern[0]];
@@ -59,17 +62,17 @@ function Board({ result, setResult }) {
           setResult({ winner: "none", state: "tie" });
         }
       };
-
-    channel.on((event)=>{
+      // this is responsible for board change on both sides
+    channel.on((event)=>{ 
         if (event.type === "game-move" && event.user.id !== client.userID) {
-            console.log("board.js line 30", client.userID)
-            const currentPlayer = event.data.player === "X" ? "O" : "X";
+            // console.log("board.js line 30", client.userID)
+            const currentPlayer = event.data.player === "P1" ? "P2" : "P1";
             setPlayer(currentPlayer);
             setTurn(currentPlayer);
             setBoard(
               board.map((val, idx) => {
                 if (idx === event.data.square && val === "") {
-                  return event.data.player;
+                  return "O"
                 }
                 return val;
               })

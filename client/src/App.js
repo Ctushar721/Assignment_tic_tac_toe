@@ -7,6 +7,8 @@ import {StreamChat, TokenManager} from "stream-chat";
 import Cookies from "universal-cookie";
 import { Chat } from "stream-chat-react";
 import JoinGame from "./components/JoinGame";
+//if token wali line is used when user reloads, agar token hai toh it checks if it's right or not 
+//login.js/signup.js on submit verifies and set is auth to be true
 
 function App() {
   const cookies = new Cookies();
@@ -22,9 +24,9 @@ function App() {
       Email: cookies.get("Email"),
       hashedPassword: cookies.get("hashedPassword")
     }, token).then((user)=>{
-      // console.log(user)
+      console.log("user")
       setIsAuth(true);
-    });
+    },(reject)=>{console.log("wrong token/tampered token")});
   }
   function logout() {
     cookies.remove("token");
@@ -45,7 +47,7 @@ function App() {
       ) : (
         <>
           <SignUp setIsAuth={setIsAuth} />
-          <Login setIsAuth={setIsAuth} />
+          <Login setIsAuth={setIsAuth} /> 
         </>
       )}
     </div>

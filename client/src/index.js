@@ -12,7 +12,9 @@ import reportWebVitals from './reportWebVitals';
 // );
 ReactDOM.render(
   <React.StrictMode>
+    <div class="mainbox">
     <App/>
+    </div>
   </React.StrictMode>,
   document.getElementById("root")
 );

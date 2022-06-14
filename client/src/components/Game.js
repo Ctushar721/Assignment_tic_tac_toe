@@ -1,21 +1,26 @@
 import React, {useState} from "react";
 import Board from "./Board";
-function Game({channel}) {
+function Game({channel, PlayerNumber}) {
+    // playersJoined = true for all players joined, false otherwise
     const [playersJoined, setPlayersJoined] = useState(channel.state.watcher_count === 2);
     const [result, setResult] = useState({ winner: "none", state: "none" });
+    // console.log("hiiiiiiiiiiiiiiiiiii")// will print whenever channel mein change hoga ya iske parent mein change hoga
+    // console.log("I am ", PlayerNumber, " from Game.js")
     channel.on("user.watching.start", (event) => {
         setPlayersJoined(event.watcher_count === 2);
       });
+    
     if (!playersJoined){
         return <div> Waiting for Rival to Join</div>
     }
     return <div className="gameContainer">
     <h1>T-T-T</h1>
-    <Board result={result} setResult={setResult}/>
+
+    {result.state === "none" && <Board result={result} setResult={setResult} PlayerNumber={PlayerNumber}/>}
     {/* chat */}
     {/* Leave Game */}
     {result.state === "won" && <div> {result.winner} Won The Game</div>}
-    {result.state === "tie" && <div> Game Tieds</div>}
+    {result.state === "tie" && <div> Game Tie</div>}
 
     
     </div>

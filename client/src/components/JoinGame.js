@@ -4,8 +4,9 @@ import Game from "./Game";
 // import CustomInput from "./CustomInput";
 function JoinGame() {
   const [rivalUsername, setRivalUsername] = useState("");
-  const { client } = useChatContext(); // ocntext passing
+  const { client } = useChatContext(); // context passing
   const [channel, setChannel] = useState(null);
+  const [PlayerNumber, setPlayerNumber] = useState(null);
   const createChannel = async () => { //
     console.log(rivalUsername);
     const response = await client.queryUsers({Email:rivalUsername}); //
@@ -18,16 +19,25 @@ function JoinGame() {
     const newChannel = await client.channel("messaging", { //
       members: [client.userID, response.users[0].id],
     });
-
+    console.log("from joingame new channel is:", newChannel._data)
     await newChannel.watch(); //
     setChannel(newChannel); //
+    const channelCreator = newChannel.data.created_by.Email;
+    
+    if (channelCreator == rivalUsername) {
+      setPlayerNumber("P2")
+      console.log("I am Player 2");
+    } else {
+      setPlayerNumber("P1")
+      console.log("I am Player 1");
+    }
   };
   //Input={CustomInput}
   return (
     <>
       {channel ? (
         <Channel channel={channel} > 
-          <Game channel={channel} setChannel={setChannel} />
+          <Game channel={channel} setChannel={setChannel} PlayerNumber={PlayerNumber} />
         </Channel>
       ) : (
         <div className="joinGame">
