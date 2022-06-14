@@ -1,109 +1,63 @@
-//Board.js
-import React, {useState, useEffect} from "react";
-import Square from "./Square";
-import { useChannelStateContext, Channel, useChatContext} from "stream-chat-react";
-import { Patterns } from "../WinningPatterns";
-function Board({ result, setResult, PlayerNumber}) {
-    const [board,setBoard] = useState(["","","","","","","","",""])
-    const [player,setPlayer] = useState("X");
-    // console.log("player",player);
-    const [turn,setTurn] = useState("X");
-    const {channel} = useChannelStateContext();
-    console.log(channel);
-    const {client} = useChatContext();
-    useEffect(() => {
-        checkIfTie();
-        checkWin();
-      }, [board]);
+// import './App.css';
+// import React, {useState} from "react";
+// import Login from "./components/Login";
+// import SignUp from "./components/SignUp";
+// import Foo from "./components/testComp";
+// import {StreamChat, TokenManager} from "stream-chat";
+// import Cookies from "universal-cookie";
+// import { Chat } from "stream-chat-react";
+// import JoinGame from "./components/JoinGame";
+// import Home from './components/Home';
+// //if token wali line is used when user reloads, agar token hai toh it checks if it's right or not 
+// //login.js/signup.js on submit verifies and set is auth to be true
 
-    const chooseSquare = async (square) => {
-        if (turn === player && board[square] === "") {
-            setTurn(player === "X" ? "O" : "X");
-            await channel.sendEvent({
-              type: "game-move",
-              data: { square, player },
-            });
-            setBoard(
-              board.map((val, idx) => {
-                if (idx === square && val === "") {
-                  return player;
-                }
-                return val;
-              })
-            );
-          }
-    }; 
-    const checkWin = () => {
-        Patterns.forEach((currPattern) => {
-          const firstPlayer = board[currPattern[0]];
-          if (firstPlayer == "") return;
-          let foundWinningPattern = true;
-          currPattern.forEach((idx) => {
-            if (board[idx] != firstPlayer) {
-              foundWinningPattern = false;
-            }
-          });
-    
-          if (foundWinningPattern) {
-            setResult({ winner: board[currPattern[0]], state: "won" });
-          }
-        });
-      };
-    
-      const checkIfTie = () => {
-        let filled = true;
-        board.forEach((square) => {
-          if (square == "") {
-            filled = false;
-          }
-        });
-    
-        if (filled) {
-          setResult({ winner: "none", state: "tie" });
-        }
-      };
+// function App() {
+//   const cookies = new Cookies();
+//   const api_key = "5vh7wd3hwgx9";
+//   const token = cookies.get("token");
+//   const client = StreamChat.getInstance(api_key);
+//   const [isAuth, setIsAuth] = useState(false);
+//   const [ShowSignUp, setShowSignUp] = useState(false);
+//   const [ShowLogin, setShowLogin] = useState(false);
 
-    channel.on((event)=>{
-        if (event.type === "game-move" && event.user.id !== client.userID) {
-            console.log("board.js line 30", client.userID)
-            const currentPlayer = event.data.player === "X" ? "O" : "X";
-            setPlayer(currentPlayer);
-            setTurn(currentPlayer);
-            setBoard(
-              board.map((val, idx) => {
-                if (idx === event.data.square && val === "") {
-                  return event.data.player;
-                }
-                return val;
-              })
-            );
-          }
-    })
+//   //this checking token part is common for login and signup
+//   if (token) {
+//     client.connectUser({
+//       id: cookies.get("userId"),
+//       Name: cookies.get("Name"),
+//       Email: cookies.get("Email"),
+//       hashedPassword: cookies.get("hashedPassword")
+//     }, token).then((user)=>{
+//       console.log("user")
+//       setIsAuth(true);
+//     },(reject)=>{console.log("wrong token/tampered token")});
+//   }
+//   function logout() {
+//     cookies.remove("token");
+//     cookies.remove("userId");
+//     cookies.remove("Name");
+//     cookies.remove("Email");
+//     cookies.remove("hashedPassword");
+//     client.disconnectUser();
+//     setIsAuth(false);
+//   }
 
-    return (
-        <div className="board">
-            <div className="row">
-                <Square chooseSquare={()=> {chooseSquare(0)}} val={board[0]}/>
-                <Square chooseSquare={()=> {chooseSquare(1)}} val={board[1]}/>
-                <Square chooseSquare={()=> {chooseSquare(2)}} val={board[2]}/>
-            </div>
+  
+//   return (
+//     <div className="App">
+//       {isAuth ? (
+//         <Chat client={client}>
+//           <JoinGame />
+//           <button onClick={logout}> Log Out</button>
+//         </Chat>
+//       ) : (
+//         <>
+//           {ShowSignUp ? (<SignUp setIsAuth={setIsAuth} />) : <Home setShowLogin={setShowLogin} setShowSignUp={setShowSignUp}/>}
+//           {ShowLogin ? (<Login setIsAuth={setIsAuth} />): <Home setShowLogin={setShowLogin} setShowSignUp={setShowSignUp}/>} 
+//         </>
+//       )}
+//     </div>
+//   );
+// }
 
-            <div className="row">
-                <Square chooseSquare={()=> {chooseSquare(3)}} val={board[3]}/>
-                <Square chooseSquare={()=> {chooseSquare(4)}} val={board[4]}/>
-                <Square chooseSquare={()=> {chooseSquare(5)}} val={board[5]}/>
-            </div>
-
-            <div className="row">
-                <Square chooseSquare={()=> {chooseSquare(6)}} val={board[6]}/>
-                <Square chooseSquare={()=> {chooseSquare(7)}} val={board[7]}/>
-                <Square chooseSquare={()=> {chooseSquare(8)}} val={board[8]}/>
-            </div>
-
-        </div>
-    )
-
-
-}
-
-export default Board;
+// export default App;
