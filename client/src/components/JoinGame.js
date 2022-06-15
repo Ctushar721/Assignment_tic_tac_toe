@@ -2,12 +2,41 @@ import React, { useState } from "react";
 import { useChatContext, Channel } from "stream-chat-react";
 import Game from "./Game";
 import AllPreviousGames from "./AllPreviousGames";
+import Cookies from "universal-cookie";
 // import CustomInput from "./CustomInput";
 function JoinGame() {
   const [rivalUsername, setRivalUsername] = useState("");
   const { client } = useChatContext(); // context passing
   const [channel, setChannel] = useState(null);
   const [PlayerNumber, setPlayerNumber] = useState(null);
+  const [Flag3, setFlag3] = useState(true);
+
+  //stopwatching channel runs only once on start
+  const cookies = new Cookies();
+  const userID = cookies.get("userId");
+  const stopWatchingAll = async () => {
+    const filter = {
+      type: 'messaging',
+      members: { $in: [userID] },
+      };
+    const sort = { last_message_at: -1 };
+    const channelList = await client.queryChannels(filter, sort, {
+        watch: false,
+        state: true,
+        limit:5
+    });
+    console.log("cureent active channels are", channelList.length)
+    channelList.map(async (channel,idx)=>{const stopWatching = await channel.stopWatching();})
+  }
+  if (Flag3){
+    stopWatchingAll();
+    setFlag3(null);
+  }
+
+
+
+
+
   const createChannel = async () => { //
     console.log(rivalUsername);
     const response = await client.queryUsers({Email:rivalUsername}); //
