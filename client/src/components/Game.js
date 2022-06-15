@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Board from "./Board";
 function Game({channel, PlayerNumber}) {
     // playersJoined = true for all players joined, false otherwise
@@ -9,6 +9,9 @@ function Game({channel, PlayerNumber}) {
     channel.on("user.watching.start", (event) => {
         setPlayersJoined(event.watcher_count === 2);
       });
+    channel.on("user.watching.stop", (event) => {
+        setPlayersJoined(event.watcher_count === 2);
+    });
     
     if (!playersJoined){
         return <div> Waiting for Rival to Join</div>
