@@ -1,13 +1,13 @@
 import './App.css';
 import React, {useState} from "react";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+import Login from "./components/Login.js";
+import SignUp from "./components/SignUp.js";
 import Foo from "./components/testComp";
 import {StreamChat, TokenManager} from "stream-chat";
 import Cookies from "universal-cookie";
 import { Chat } from "stream-chat-react";
-import JoinGame from "./components/JoinGame";
-import Home from './components/Home';
+import JoinGame from "./components/JoinGame.js";
+import Home from './components/Home.js';
 //if token wali line is used when user reloads, agar token hai toh it checks if it's right or not 
 //login.js/signup.js on submit verifies and set is auth to be true
 

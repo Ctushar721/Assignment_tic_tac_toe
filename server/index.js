@@ -4,15 +4,22 @@ import {StreamChat} from "stream-chat";
 import {v4 as uuidv4} from "uuid";
 import bcrypt from 'bcrypt';
 import path from "path";
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const publicPath = path.join(__dirname, 'public');
 const PORT = process.env.PORT || 3001
 const app = express();
-app.use(express.static(path.join(__dirname + "public")))
+app.use(express.static(publicPath))
 app.use(cors());
 app.use(express.json());
 
 const api_key = "5vh7wd3hwgx9";
 const api_secret = "zn2j87byaanphgq9ayhsg9ddvm28hnayevy2wgfenwqz9g69rk7gq59ksmppjehy"
 const serverClient = StreamChat.getInstance(api_key, api_secret);
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
 
 //Signup
 app.post('/signup',async (req,res)=>{
