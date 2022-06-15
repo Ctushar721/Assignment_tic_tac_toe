@@ -3,9 +3,10 @@ import cors from "cors";
 import {StreamChat} from "stream-chat";
 import {v4 as uuidv4} from "uuid";
 import bcrypt from 'bcrypt';
-
+import path from "path";
+const PORT = process.env.PORT || 3001
 const app = express();
-
+app.use(express.static(path.join(__dirname + "public")))
 app.use(cors());
 app.use(express.json());
 
@@ -61,4 +62,4 @@ app.post('/login', async (req,res)=>{
 
 
 
-app.listen(3001, ()=> {console.log("Server started on port 3001")})
+app.listen(PORT, ()=> {console.log("Server started on port 3001")})
