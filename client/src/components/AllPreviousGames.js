@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Cookies from "universal-cookie";
 import PrevGameCard from "./PrevGameCard";
-function AllPreviousGames({client,channel,setChannel,PlayerNumber}) {
+function AllPreviousGames({client,channel,setChannel,PlayerNumber,setPlayerNumber}) {
     const cookies = new Cookies();
     const Email = cookies.get("Email");
     const userID = cookies.get("userId");
@@ -15,12 +15,12 @@ function AllPreviousGames({client,channel,setChannel,PlayerNumber}) {
         };
         const sort = { last_message_at: -1 };
         const channelList = await client.queryChannels(filter, sort, {
-            watch: true,
+            watch: false,
             state: true,
             limit:5
         });
         setChannelList(channelList)
-        console.log(channelList)
+        // console.log(channelList)
     }
     if (Flag) {
         GamesList();
@@ -30,11 +30,11 @@ function AllPreviousGames({client,channel,setChannel,PlayerNumber}) {
 
     if (ChannelList){ return (<div className="AllPreviousGamesContainer">
 
-    <h1>List of Games of {Email}</h1>
+    <h1>List of Games of {cookies.get("Name")}</h1>
     
     {ChannelList.map((chnl,indx)=>{return (
         <div key={indx}>
-        <PrevGameCard channel={chnl} setChannel={setChannel} PlayerNumber={PlayerNumber} client={client}/>
+        <PrevGameCard channel={chnl} setChannel={setChannel} PlayerNumber={PlayerNumber} client={client} setPlayerNumber={setPlayerNumber}/>
         </div>
     )})}
     

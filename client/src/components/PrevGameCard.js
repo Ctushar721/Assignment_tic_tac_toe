@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Cookies from "universal-cookie";
-function PrevGameCard({client,channel,setChannel,PlayerNumber}) {
+function PrevGameCard({client,channel,setChannel,PlayerNumber,setPlayerNumber}) {
     const chnlID = channel.cid;
     const cookies = new Cookies();
     const userID = cookies.get("userId");
@@ -9,8 +9,19 @@ function PrevGameCard({client,channel,setChannel,PlayerNumber}) {
     const time = timeCreated.split("T")[1].split("Z")[0].split(".")[0]
     const [friend, setFriend] = useState(null);
     let [Flag2, setFlag2] = useState(true);
-    function gotoGame() {
+    async function gotoGame() {
         setChannel(channel);
+        const startWatching = await channel.watch();
+        // startWatching();
+        const watch_count = channel.state.watcher_count
+        console.log("watcher count is", watch_count);
+        if (watch_count == 2) {
+            setPlayerNumber("P2")
+            console.log("I am Player 2");
+        } else {
+            setPlayerNumber("P1")
+            console.log("I am Player 1");
+        }
     }
     let friendFind = async () => {
     let tempMember = channel.state.members;

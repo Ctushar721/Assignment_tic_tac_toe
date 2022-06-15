@@ -53,8 +53,9 @@ function JoinGame() {
     await newChannel.watch(); //
     setChannel(newChannel); //
     const channelCreator = newChannel.data.created_by.Email;
-    
-    if (channelCreator == rivalUsername) {
+    const watch_count = newChannel.state.watcher_count
+    console.log("watcher count is", watch_count);
+    if (watch_count == 2) {
       setPlayerNumber("P2")
       console.log("I am Player 2");
     } else {
@@ -67,7 +68,7 @@ function JoinGame() {
     <>
       {channel ? (
         <Channel channel={channel} > 
-          <Game channel={channel} setChannel={setChannel} PlayerNumber={PlayerNumber} />
+          <Game channel={channel} setChannel={setChannel} PlayerNumber={PlayerNumber} setPlayerNumber={setPlayerNumber} />
         </Channel>
       ) : (
         <div className="joinGame">
@@ -79,7 +80,7 @@ function JoinGame() {
             }}
           />
           <button onClick={createChannel}> Join/Start Game</button>
-          <AllPreviousGames client={client} channel={channel} setChannel={setChannel} PlayerNumber={PlayerNumber}/>
+          <AllPreviousGames client={client} channel={channel} setChannel={setChannel} PlayerNumber={PlayerNumber} setPlayerNumber={setPlayerNumber}/>
           {/* set channel as a prop */}
         </div>
       )}
