@@ -13,7 +13,8 @@ function Login(props) {
             cookies.set("userId",userId);
             cookies.set("Name",Name);
             cookies.set("Email",Email);
-            props.setIsAuth(true);
+            if (token){
+            props.setIsAuth(true);}
         })
 
     }; 
