@@ -14,11 +14,6 @@
 ## About Project
 - I have used Stream Chat API to create a channel so that users can connect and play online. We could also use Socket but Stream chat has slightly better documentation and a lot of games have a live chat feature which I plan to integrate here, so that would be easier with Stream Chat. 
 - Winning Logic: On observing various possibilities we can come to conclusion that there are only 9 patterns by which a game can reach decisive state.
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba%28171%2C+184%2C+195%2C+1%29&t=seti&wt=none&l=auto&width=680&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=export%2520const%2520Patterns%2520%253D%2520%255B%250A%2520%2520%2520%2520%255B0%252C%25201%252C%25202%255D%252C%250A%2520%2520%2520%2520%255B3%252C%25204%252C%25205%255D%252C%250A%2520%2520%2520%2520%255B6%252C%25207%252C%25208%255D%252C%250A%2520%2520%2520%2520%255B0%252C%25203%252C%25206%255D%252C%250A%2520%2520%2520%2520%255B1%252C%25204%252C%25207%255D%252C%250A%2520%2520%2520%2520%255B2%252C%25205%252C%25208%255D%252C%250A%2520%2520%2520%2520%255B0%252C%25204%252C%25208%255D%252C%250A%2520%2520%2520%2520%255B2%252C%25204%252C%25206%255D%252C%250A%2520%2520%255D%253B&tb=WinningPatterns.js"
-  style="width: 526px; height: 372px; border:0; transform: scale(1); overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
 - We have created a components folder in which we place components such as
 	* Board.js (Renders the Board using Squares Component)
 	* Squares.js (This is the individual square with method calls onClick)
