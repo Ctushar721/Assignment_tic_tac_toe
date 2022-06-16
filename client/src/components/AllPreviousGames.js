@@ -35,6 +35,7 @@ function AllPreviousGames({client,channel,setChannel,PlayerNumber,setPlayerNumbe
     {ChannelList.map((chnl,indx)=>{return (
         <div key={indx}>
         <PrevGameCard channel={chnl} setChannel={setChannel} PlayerNumber={PlayerNumber} client={client} setPlayerNumber={setPlayerNumber}/>
+        <br/>
         </div>
     )})}
     

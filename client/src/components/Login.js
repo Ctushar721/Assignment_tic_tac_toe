@@ -5,7 +5,7 @@ function Login(props) {
     const cookies = new Cookies();
     let [user,setUser] = useState(null);
     const signInUser = ()=>{
-        Axios.post("http://localhost:3001/login", user).then((res)=> {
+        Axios.post("https://tinfinity-deploy1.herokuapp.com/login", user).then((res)=> {
             console.log("reaching here Login")
             const {token, Name, Email, userId} = res.data;
             console.log("here", Email);

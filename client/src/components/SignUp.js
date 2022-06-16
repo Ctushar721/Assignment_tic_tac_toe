@@ -10,7 +10,7 @@ function SignUp(props) {
     }
     let [user,setUser] = useState(initialuser); 
     const signUpUser = ()=>{
-        Axios.post("http://localhost:3001/signup", user).then((res)=> {
+        Axios.post("https://tinfinity-deploy1.herokuapp.com/signup", user).then((res)=> {
             console.log("reaching here")
             const {token, userId, Name, Email, hashedPassword} = res.data;
             //working
