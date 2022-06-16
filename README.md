@@ -30,3 +30,7 @@
 	*  `result` If the game has concluded.
 	* and many more...
 - The application is deployed on heroku.
+## Challenges 
+- While making this project I faced a few challenges, I have documented them here along with the solutions to them. 
+[Link](https://docs.google.com/document/d/1Oo2B2yvrw70hNhjE9tT48lbXn7yvB0x7MCvpiRGbbqE/edit#)
+
