@@ -9,9 +9,13 @@ function Home({setShowLogin, setShowSignUp}) {
     
     return (
     <div className="HomeComponent">
-    <h1>Tic-Tac-Toe</h1>
-      <button onClick={setLogin}> Login</button>
-      <button onClick={setSignup}> Signup</button>
+    <h1>Tic Tac Toe </h1>
+    <h1>MultiPlayer Game</h1>
+    <br/>
+      <button onClick={setLogin} class="btn btn-primary btn-lg LoginButtonHomePage btn-block"> Login</button>
+      <br/>
+      <button onClick={setSignup} class="btn btn-dark btn-lg SignUpButtonHomePage btn-block"> Register</button>
+      
     </div>
     )
 }

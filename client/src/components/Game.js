@@ -17,8 +17,7 @@ function Game({channel, PlayerNumber, setPlayerNumber}) {
         return <div> Waiting for Rival to Join</div>
     }
     return <div className="gameContainer">
-    <h1>T-T-T</h1>
-
+    <h1>World's Best Tic Tac Toe</h1>
     {result.state === "none" && <Board result={result} setResult={setResult} PlayerNumber={PlayerNumber} setPlayerNumber={setPlayerNumber}/>}
     {/* chat */}
     {/* Leave Game */}

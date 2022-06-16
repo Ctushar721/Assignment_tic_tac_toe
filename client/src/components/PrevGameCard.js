@@ -44,9 +44,11 @@ if (Flag2) {
 
 if (friend) {
     return (<div className="PrevGameCardContainer">
-    <h1>Game with {friend}</h1>
+    <h3>Game with {friend}</h3>
+    <br/>
     <p>on {date} at {time}</p>
-    <button onClick={gotoGame}> Go to Game</button>
+    {/* <br/> */}
+    <button onClick={gotoGame} className="btn btn-outline-primary btn-sm"> Go to Game</button>
     </div>)
     }
 }

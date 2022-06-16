@@ -72,14 +72,15 @@ function JoinGame() {
         </Channel>
       ) : (
         <div className="joinGame">
-          <h4>Create Game</h4>
+          <h4 className="CreateGameHeading">Create Game</h4>
           <input
-            placeholder="Email of rival..."
+            placeholder="Email of Opponent"
             onChange={(event) => {
               setRivalUsername(event.target.value);
             }}
           />
-          <button onClick={createChannel}> Join/Start Game</button>
+          <br/>
+          <button onClick={createChannel} class="btn btn-success JoinGameButton"> Start Game</button>
           <AllPreviousGames client={client} channel={channel} setChannel={setChannel} PlayerNumber={PlayerNumber} setPlayerNumber={setPlayerNumber}/>
           {/* set channel as a prop */}
         </div>

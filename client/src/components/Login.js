@@ -20,20 +20,21 @@ function Login(props) {
     }; 
     return (
         <div className="login">
-            <h1>Login</h1>
+            <h1>Please Login</h1>
             <input 
-            placeholder="email" 
+            placeholder="Email" 
             onChange={(event)=>{setUser({...user, Email:event.target.value})}}
             type='email'
              />
              <input 
-            placeholder="password" 
+            placeholder="Password" 
             onChange={(event)=>{setUser({...user, Password:event.target.value})}}
             type='password'
              />
-              <button onClick={signInUser}>
-             Sign In
-             </button>
+             <br/>
+             <div>
+              <button onClick={signInUser} class="btn btn-primary btn-lg SigninButton"> Sign in</button>
+            </div>
         </div>
     )
 }

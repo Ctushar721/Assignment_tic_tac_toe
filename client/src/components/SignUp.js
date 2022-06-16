@@ -26,14 +26,14 @@ function SignUp(props) {
 
     return (
         <div className="signUp">
-            <h1>Signup</h1>
+            <h1>Create Account</h1>
             <input 
             placeholder="Name" 
             onChange={(event)=>{setUser({...user, Name:event.target.value})}}
             type='text'
              />
              <input 
-            placeholder="email" 
+            placeholder="Email" 
             onChange={(event)=>{setUser({...user, Email:event.target.value})}}
             type='email'
              />
@@ -42,8 +42,8 @@ function SignUp(props) {
             onChange={(event)=>{setUser({...user, Password:event.target.value})}}
             type='password'
              />
-             <button onClick={signUpUser}>
-             Sign Up
+             <button onClick={signUpUser} class="btn btn-dark">
+             Sign up
              </button>
              
         </div>

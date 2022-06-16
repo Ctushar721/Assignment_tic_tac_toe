@@ -45,11 +45,14 @@ function App() {
   
   return (
     <div className="App">
-      {isAuth ? (
+      {isAuth ? (<div class="JoinPage">
         <Chat client={client}>
           <JoinGame />
-          <button onClick={logout}> Log Out</button>
         </Chat>
+        <br/>
+        <button onClick={logout} class="btn btn-info LogoutButton">Logout</button>
+        
+        </div>
       ) : (
         <>
           {!ShowSignUp && !ShowLogin ? <Home setShowLogin={setShowLogin} setShowSignUp={setShowSignUp}/> : 

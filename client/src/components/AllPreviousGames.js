@@ -29,8 +29,8 @@ function AllPreviousGames({client,channel,setChannel,PlayerNumber,setPlayerNumbe
     
 
     if (ChannelList){ return (<div className="AllPreviousGamesContainer">
-
-    <h1>List of Games of {cookies.get("Name")}</h1>
+    
+    <h3>Previous Games of {cookies.get("Name")}</h3>
     
     {ChannelList.map((chnl,indx)=>{return (
         <div key={indx}>
