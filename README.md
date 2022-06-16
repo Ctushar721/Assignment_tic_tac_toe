@@ -14,6 +14,7 @@
 ## About Project
 - I have used Stream Chat API to create a channel so that users can connect and play online. We could also use Socket but Stream chat has slightly better documentation and a lot of games have a live chat feature which I plan to integrate here, so that would be easier with Stream Chat. 
 - Winning Logic: On observing various possibilities we can come to conclusion that there are only 8 patterns by which a game can reach decisive state.
+[![hexbgS.md.png](https://iili.io/hexbgS.md.png)](https://freeimage.host/i/hexbgS)
 - We have created a components folder in which we place components such as
 	* Board.js (Renders the Board using Squares Component)
 	* Squares.js (This is the individual square with method calls onClick)
