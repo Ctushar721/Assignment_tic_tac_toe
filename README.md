@@ -9,3 +9,8 @@
 - The app is built using React Js and Express.
 ## Online Site
 - To play this game visit [Game](https://tinfinity-deploy1.herokuapp.com/) 
+- You just need to Signup and start playing.
+## About Project
+- I have used Stream Chat API to create a channel so that users can connect and play online. We could also use Socket but Stream chat has slightly better documentation and a lot of games have a live chat feature which I plan to integrate here, so that would be easier with Stream Chat. 
+- Winning Logic: On observing various possibilities we can come to conclusion that there are only 9 patterns by which a game can reach decisive state.![Pattern Image](blob:https://carbon.now.sh/76e12aae-16b7-4354-bcb2-b9298eb98efe)
+- 
